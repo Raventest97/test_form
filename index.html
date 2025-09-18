@@ -47,12 +47,21 @@
     button:hover {
       background: #0056b3;
     }
+    #response {
+      margin-top: 20px;
+      padding: 15px;
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+      border-radius: 8px;
+      display: none;
+    }
   </style>
 </head>
 <body>
  
   <h1>Testing Form</h1>
-  <form>
+  <form id ="testForm">
     <!-- Text Fields -->
     <label for="name">Name:</label>
     <input type="text" id="name" placeholder="Enter your name">
@@ -109,6 +118,29 @@
     <!-- Submit -->
     <button type="submit">Submit</button>
   </form>
+ 
+  <!-- Response Area -->
+  <div id="response"></div>
+ 
+  <script>
+    document.getElementById("testForm").addEventListener("submit", function(e) {
+      e.preventDefault(); // stop page refresh
+ 
+      let name = document.getElementById("name").value;
+      let email = document.getElementById("email").value;
+ 
+      let responseBox = document.getElementById("response");
+      responseBox.style.display = "block";
+      responseBox.innerHTML = `<strong>Form Submitted!</strong><br>
+                               Thank you, <b>${name}</b>. We have received your details.<br>
+                               A confirmation will be sent to <b>${email}</b>.`;
+ 
+      // Reload the page after 3 seconds
+      setTimeout(() => {
+        window.location.reload();
+      }, 5000);
+    });
+  </script>
  
 </body>
 </html>
